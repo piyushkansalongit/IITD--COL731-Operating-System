@@ -1,0 +1,18 @@
+         "  pushl %ebp                                          \n\t"\
+         "  movl %gs:" STR(process_offset_stackend) ", %ebp     \n\t"\
+         "  addl 0x400000, %ebp                                 \n\t"\
+         "  subl 0x1000, %ebp                                   \n\t"\
+         "                                                      \n\t"\
+         "  movl $0, 16(%ebp)                                   \n\t"\
+         "  movl $0, 20(%ebp)                                   \n\t"\
+         "  addl $4, %esp                                       \n\t"\
+         "  movl %esp, 24(%ebp)                                 \n\t"\
+         "  subl $4, %esp                                       \n\t"\
+         "  movl %eip, 28(%ebp)                                 \n\t"\
+         "  movl %cr2, 32(%ebp)                                 \n\t"\
+         "                                                      \n\t"\
+         "  popl %ebp                                           \n\t"\
+         "  movl %gs:" STR(process_offset_stackend) ", %esp     \n\t"\
+         "  addl 0x400000, %esp                                 \n\t"\
+         "  subl 0x1000, %esp                                   \n\t"\
+         "  call %gs:" STR(process_offset_startip+4) "          \n\t"\
